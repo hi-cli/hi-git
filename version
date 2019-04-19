@@ -29,7 +29,7 @@ source "${HI_CLI_HOME}/bin/colors"
 source "${HI_CLI_HOME}/bin/logging"
 source "${module_dir}/utils/common"
 ###############################################################################
-module_version="1.0.1"
+module_version="1.0.2"
 ###############################################################################
 
 function run() {
