@@ -32,8 +32,16 @@ module_version="1.0.0"
 ###############################################################################
 
 function run() {
-    git log --pretty='v0.0.0>%ci>%H ' | head -n 1 | sed s/\://g | sed s/\+0800//g | sed s/\ //g | sed s/-//g | sed s/\>/\-/g | awk '{print substr($1,0,34)}'
     
+    git log --pretty='v0.0.0 %ci %H' | head -n 1 | while read ver dt tm tz hs; do
+        ts_date=${dt/\-/}
+        ts_date=${ts_date/\-/}
+        ts_time=${tm/\:/}
+        ts_time=${ts_time/\:/}
+        ts_hash=$(echo $hs | awk '{print substr($1,0,12)}')
+        echo ${ver}-${ts_date}${ts_time}-${ts_hash}
+    done
+
     echo ""
     
 }
